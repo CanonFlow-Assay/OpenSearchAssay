@@ -1,0 +1,7 @@
+{
+  "python": "3.12",
+  "runtimeDependencies": [],
+  "qualifiedEngineVersion": "3.9.0",
+  "releaseSource": "https://opensearch.org/downloads/",
+  "reviewedAt": "2026-11-16"
+}

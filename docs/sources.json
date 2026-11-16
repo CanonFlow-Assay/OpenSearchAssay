@@ -1,0 +1,87 @@
+{
+  "reviewedAt": "2026-11-16",
+  "productVersion": "3.9.0",
+  "sources": [
+    {
+      "id": "OS-SEC",
+      "kind": "primary",
+      "url": "https://docs.opensearch.org/3.9/security/configuration/best-practices/",
+      "decision": "TLS, least privilege and replacing demo PKI; do not infer certificate validity from filenames."
+    },
+    {
+      "id": "OS-TLS",
+      "kind": "primary",
+      "url": "https://docs.opensearch.org/3.9/security/configuration/tls/",
+      "decision": "TLS and hostname-verification configuration; a snapshot is not a handshake test."
+    },
+    {
+      "id": "OS-INDEX",
+      "kind": "primary",
+      "url": "https://docs.opensearch.org/3.9/install-and-configure/configuring-opensearch/index-settings/",
+      "decision": "Explicit topology/mapping limits; sizing remains contextual."
+    },
+    {
+      "id": "OS-BULK",
+      "kind": "primary",
+      "url": "https://docs.opensearch.org/3.9/api-reference/document-apis/bulk/",
+      "decision": "Inspect per-item failures, byte bounds, retry and visibility semantics."
+    },
+    {
+      "id": "OS-TUNE",
+      "kind": "primary",
+      "url": "https://docs.opensearch.org/3.9/tuning-your-cluster/",
+      "decision": "Measure indexing/search/recovery before tuning."
+    },
+    {
+      "id": "OS-REDDIT",
+      "kind": "community",
+      "url": "https://www.reddit.com/r/aws/comments/1axkjgd/",
+      "decision": "Distinguish AWS-managed/serverless service limits from self-hosted OpenSearch controls."
+    },
+    {
+      "id": "OS-MEDIUM",
+      "kind": "community",
+      "url": "https://medium.com/motive-eng/optimizing-opensearch-for-high-velocity-writes-processing-85-million-updates-a-day-ac736484f3d3",
+      "decision": "Write-amplification and refresh/merge tuning motivate experiments; five shards, 30s refresh and merge values are not universal rules."
+    },
+    {
+      "id": "OS-SHARDS",
+      "kind": "community",
+      "url": "https://dejanualex.medium.com/opensearch-do-some-stats-on-your-indices-ac9bb5670444",
+      "decision": "Shard pressure is real; reducing replicas or applying a fixed GB target requires availability/recovery context."
+    },
+    {
+      "id": "OS-INCIDENT",
+      "kind": "community",
+      "url": "https://itnext.io/opensearch-outage-lessons-learnt-and-measures-implemented-a9730e1b275f",
+      "decision": "Public preview only of a 2023 first-hand incident account. Used to motivate recovery questions; no paywalled root cause or mitigation details are claimed or admitted.",
+      "access": "preview-only"
+    },
+    {
+      "id": "OS-RELEVANCE",
+      "kind": "primary",
+      "url": "https://opensearch.org/blog/measuring-and-improving-search-quality-metrics/",
+      "decision": "Separate relevance evaluation from cluster health and ingestion success."
+    },
+    {
+      "id": "OS-INDEXING",
+      "kind": "primary",
+      "url": "https://docs.opensearch.org/3.9/tuning-your-cluster/performance-tuning/indexing-speed/",
+      "decision": "Experiment with byte size, refresh and concurrency; preserve fields needed to identify/retry failed items."
+    },
+    {
+      "id": "OS-HELM",
+      "kind": "primary",
+      "url": "https://github.com/opensearch-project/helm-charts",
+      "decision": "Maintainer chart documentation identifies the unsafe demo-certificate flag and demo-initialization boundary. A false flag is still only configuration evidence, not proof of valid PKI."
+    }
+  ],
+  "searchCoverage": [
+    "Official versioned documentation",
+    "Reddit",
+    "Medium",
+    "Substack",
+    "Engine authors and specialist engineering blogs"
+  ],
+  "searchNote": "Substack searches yielded no sufficiently relevant general operational reference to admit; OpenSearch maintainer material, a first-hand Medium engineering article and an ITNEXT incident account supplement the official documentation. No Substack authority is fabricated."
+}

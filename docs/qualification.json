@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "status": "Pass",
+  "python": "3.12.3",
+  "commands": [
+    {
+      "name": "unit",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exitCode": 0,
+      "expectedExitCodes": [
+        0
+      ],
+      "logSha256": "8ce084a115e503a30b2ee0399e9f1b34927ff925e25fc58036f15350a3747a4b",
+      "passed": true
+    },
+    {
+      "name": "package",
+      "argv": [
+        "python3",
+        "eng/package.py"
+      ],
+      "exitCode": 0,
+      "expectedExitCodes": [
+        0
+      ],
+      "logSha256": "b3733b3bc5502f33e1ba7d3cadc2b3021d4d78e32f15b6a73b13b3a12fadd553",
+      "passed": true
+    },
+    {
+      "name": "native",
+      "argv": [
+        "python3",
+        "eng/native_smoke.py"
+      ],
+      "exitCode": 0,
+      "expectedExitCodes": [
+        0
+      ],
+      "logSha256": "f202b06da95c3ee986ae0384728a82b43f52d0b89b3171e0cedfac00c3941ef4",
+      "passed": true
+    },
+    {
+      "name": "native-assessment",
+      "argv": [
+        "python3",
+        "/home/arun/Developer/CanonFlow-Assay/OpenSearchAssay/artifacts/opensearch_assay.pyz",
+        "verify",
+        "/home/arun/Developer/CanonFlow-Assay/OpenSearchAssay/artifacts/native-snapshot.json",
+        "--policy",
+        "/home/arun/Developer/CanonFlow-Assay/OpenSearchAssay/artifacts/native-policy.json",
+        "--out",
+        "/home/arun/Developer/CanonFlow-Assay/OpenSearchAssay/artifacts/native-receipt.json"
+      ],
+      "exitCode": 1,
+      "expectedExitCodes": [
+        1
+      ],
+      "logSha256": "abfbb962fd0aed27630cd3186638ab7074d74d992c11fbb0d8ba12af45e1ccb7",
+      "passed": true
+    }
+  ],
+  "native": {
+    "status": "Pass",
+    "engineVersion": "3.9.0",
+    "imageDigests": [
+      "opensearchproject/opensearch@sha256:3bf4fe26aeb9f7b03c0ebcb1302bb24e855ee6b89fd926d26a71a83ef6f7e076"
+    ],
+    "cases": [
+      "exact engine version",
+      "explicit mapping created",
+      "HTTP success retains per-item failure",
+      "rejected item not indexed",
+      "stable ID update preserves cardinality",
+      "strict mapping rejects unknown field",
+      "alias resolves reviewed index"
+    ],
+    "expectedSnapshotVerdict": "Fail",
+    "limits": "Private no-network disposable test disables security and replicas intentionally. API semantics passed; production TLS, DLS/FLS, HA, snapshots/restore and load behavior remain unqualified.",
+    "snapshotSha256": "850c62f9d037a84d2a513c9d062753546b19a08d11345d646690a4d7141528cc"
+  },
+  "sourceFiles": {
+    "src/opensearch_assay/__init__.py": "ffaf5ec284908ebfc613b8eb70b4865e01292ae82b86d77fda213d590840cc99",
+    "src/opensearch_assay/__main__.py": "a20f87cc7f83ce9372a55db6c20956add35fe6622e82739ef8c54b8ac03241ef",
+    "src/opensearch_assay/catalogue.json": "9470dda048d5127ddfe90b02065f5bed6f4e3a87c3b7f16f36e17d753513498e",
+    "src/opensearch_assay/engine.py": "1e4bd99af8039351fd8bce8009aff4f10bedd9a61701f25b7652aa4675402828",
+    "tests/test_engine.py": "688c9bd29ff737f5fc7b335e9482dfb20fdf10255593e4bd9a2091888a71f613",
+    "eng/native_common.py": "24d6b38a539ff2d8a43e3335111169bbf8559396122f70c01ee9cbc9501a21dd",
+    "eng/native_smoke.py": "5adf997f630478af225ea6bd8a71fb0c873f03e60c6a5a348dcbb3b48ae636f4",
+    "eng/package.py": "9adcd61d69189280a4da145af7121bca48a0a3efc97bda5ab93a34bc41499b0d",
+    "eng/qualify.py": "55a881f2912246c4fa0530159966d7e3930f90aede6abe6a7b36d1a177e46b01"
+  },
+  "scope": "Local unit/qualification cases and optional disposable native engine; not production deployment certification.",
+  "unitCases": {
+    "run": 42,
+    "passed": 42,
+    "skipped": 0,
+    "failures": 0
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "assay": "OpenSearchAssay",
+  "product": "opensearch",
+  "engineVersion": "3.9.0",
+  "reviewDate": "2026-11-16",
+  "profiles": [
+    "production"
+  ],
+  "rules": [
+    {
+      "id": "OS001",
+      "title": "Self-hosted production: plugins.security.disabled",
+      "path": "/settings/plugins.security.disabled",
+      "kind": "boolean",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-SEC",
+      "expected": false
+    },
+    {
+      "id": "OS002",
+      "title": "Self-hosted production: plugins.security.ssl.http.enabled",
+      "path": "/settings/plugins.security.ssl.http.enabled",
+      "kind": "boolean",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-SEC",
+      "expected": true
+    },
+    {
+      "id": "OS003",
+      "title": "Self-hosted production: plugins.security.ssl.transport.enforce_hostname_verification",
+      "path": "/settings/plugins.security.ssl.transport.enforce_hostname_verification",
+      "kind": "boolean",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-TLS",
+      "expected": true
+    },
+    {
+      "id": "OS004",
+      "title": "Self-hosted production: plugins.security.allow_unsafe_democertificates",
+      "path": "/settings/plugins.security.allow_unsafe_democertificates",
+      "kind": "boolean",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-HELM",
+      "expected": false
+    },
+    {
+      "id": "OS005",
+      "title": "HA production index declares positive number_of_shards",
+      "path": "/indices",
+      "kind": "each",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-INDEX",
+      "field": "/number_of_shards",
+      "test": {
+        "kind": "integer",
+        "min": 1
+      }
+    },
+    {
+      "id": "OS006",
+      "title": "HA production index declares positive number_of_replicas",
+      "path": "/indices",
+      "kind": "each",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-INDEX",
+      "field": "/number_of_replicas",
+      "test": {
+        "kind": "integer",
+        "min": 1
+      }
+    },
+    {
+      "id": "OS007",
+      "title": "HA production index declares positive mapping_total_fields_limit",
+      "path": "/indices",
+      "kind": "each",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-INDEX",
+      "field": "/mapping_total_fields_limit",
+      "test": {
+        "kind": "integer",
+        "min": 1
+      }
+    },
+    {
+      "id": "OS008",
+      "title": "Bulk consumer inspects individual item failures",
+      "path": "/bulk/inspectItemErrors",
+      "kind": "boolean",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-BULK",
+      "expected": true
+    },
+    {
+      "id": "OS009",
+      "title": "Bounded bulk consumer declares maxBytes",
+      "path": "/bulk/maxBytes",
+      "kind": "integer",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-BULK",
+      "min": 1
+    },
+    {
+      "id": "OS010",
+      "title": "Bounded bulk consumer declares maxItems",
+      "path": "/bulk/maxItems",
+      "kind": "integer",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-BULK",
+      "min": 1
+    },
+    {
+      "id": "OS011",
+      "title": "Bounded bulk consumer declares maxAttempts",
+      "path": "/bulk/maxAttempts",
+      "kind": "integer",
+      "severity": "blocking",
+      "admission": "bounded-snapshot-profile",
+      "profiles": [
+        "production"
+      ],
+      "source": "OS-BULK",
+      "min": 1
+    }
+  ]
+}

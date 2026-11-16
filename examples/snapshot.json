@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "product": "opensearch",
+  "version": "3.9.0",
+  "settings": {
+    "plugins.security.disabled": false,
+    "plugins.security.ssl.http.enabled": true,
+    "plugins.security.ssl.transport.enforce_hostname_verification": true,
+    "plugins.security.allow_unsafe_democertificates": false
+  },
+  "indices": [
+    {
+      "name": "orders",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "mapping_total_fields_limit": 1000
+    }
+  ],
+  "bulk": {
+    "inspectItemErrors": true,
+    "maxBytes": 5242880,
+    "maxItems": 1000,
+    "maxAttempts": 4
+  }
+}
